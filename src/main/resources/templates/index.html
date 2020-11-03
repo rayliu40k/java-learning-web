@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<script src="webjars/jquery/jquery.min.js"></script>
+<script src="webjars/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//登录
+		$('#login').click(function() {
+			var username = $('#username').val();
+			var password = $('#password').val();
+			if (username == "") {
+				alert('用户名不能为空');
+				return;
+			}
+			if (password == "") {
+				alert('密码不能为空');
+				return;
+			}
+			$.ajax({
+				method : 'POST',
+				url : '/login',
+				cache : false,
+				data : new FormData($('#loginForm')[0]),
+				processData : false,
+				contentType : false,
+				success : function(data) {
+					if (data.status == "success") {
+						$(location).attr("href", "/home?username=" + username);
+					} else {
+						alert('【' + data.summary + '】' + data.description);
+					}
+				}
+			})
+		});
+
+	});
+</script>
+<body>
+	<div class="container">
+		<h1>
+			<center>Web开发学习平台</center>
+		</h1>
+	</div>
+	<div>
+		<form id="loginForm" class="form-horizontal" role="form" method="post">
+			<div class="form-group">
+				<label for="username" class="col-sm-2 control-label">用户名</label>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" id="username"
+						name="username" placeholder="请输入用户名" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="password" class="col-sm-2 control-label">密码</label>
+				<div class="col-sm-2">
+					<input type="password" class="form-control" id="password"
+						name="password" placeholder="请输入密码" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<a href="/register">免费注册</a>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" id="login" class="btn btn-info">登 录</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

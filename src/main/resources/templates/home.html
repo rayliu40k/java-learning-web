@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<script src="webjars/jquery/jquery.min.js"></script>
+<script src="webjars/bootstrap/js/bootstrap.min.js"></script>
+<script src="webjars/js-yaml/dist/js-yaml.js"></script>
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container">
+		<h1>
+			<center>主页面</center>
+		</h1>
+	</div>
+	<div>
+		<center>
+			<table>
+				<tr>
+					<td>Hello,</td>
+					<td><h1>
+							<font color="red" th:text="${username}" />
+						</h1></td>
+				</tr>
+			</table>
+		</center>
+	</div>
+</body>
+</html>
