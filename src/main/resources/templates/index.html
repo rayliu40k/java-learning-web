@@ -20,21 +20,18 @@
 				alert('密码不能为空');
 				return;
 			}
-			$.ajax({
-				method : 'POST',
-				url : '/login',
-				cache : false,
-				data : new FormData($('#loginForm')[0]),
-				processData : false,
-				contentType : false,
-				success : function(data) {
-					if (data.status == "success") {
-						$(location).attr("href", "/home?username=" + username);
-					} else {
-						alert('【' + data.summary + '】' + data.description);
-					}
+			
+			$.post("/login", {
+				username : username,
+				password : password,
+			}, function(data, status) {
+				if (data.status == "success") {
+					$(location).attr("href", "/home?username=" + username);
+				} else {
+					alert('【' + data.summary + '】' + data.description);
 				}
-			})
+			});
+			
 		});
 
 	});
@@ -46,7 +43,6 @@
 		</h1>
 	</div>
 	<div>
-		<form id="loginForm" class="form-horizontal" role="form" method="post">
 			<div class="form-group">
 				<label for="username" class="col-sm-2 control-label">用户名</label>
 				<div class="col-sm-2">
@@ -71,7 +67,6 @@
 					<button type="submit" id="login" class="btn btn-info">登 录</button>
 				</div>
 			</div>
-		</form>
 	</div>
 </body>
 </html>
