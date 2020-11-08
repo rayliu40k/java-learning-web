@@ -18,6 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 
     /**
+     * txt
+     */
+    @RequestMapping("/txt")
+    public String txt(String name) {
+        System.out.println(name);
+        return "txt";
+    }
+
+    /**
      * 首页
      */
     @RequestMapping("/index")
