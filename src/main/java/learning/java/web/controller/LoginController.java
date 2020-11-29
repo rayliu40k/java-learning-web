@@ -80,4 +80,17 @@ public class LoginController {
         return new RestResponse<>(Constants.SUCCESS);
     }
 
+    @PostMapping("/modifyPassword")
+    public RestResponse<?> modifyPassword(String username, String password1, String password2) {
+
+        //校验
+        if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password1)
+            || StringUtils.isEmpty(password2)) {
+            return new RestResponse<>(Constants.FAILURE, "用户名或密码不存在", "用户名或密码不存在");
+        }
+        if (!password1.equals(password2)) {
+            return new RestResponse<>(Constants.FAILURE, "密码不一致", "密码不一致");
+        }
+        return new RestResponse<>(Constants.SUCCESS);
+    }
 }
