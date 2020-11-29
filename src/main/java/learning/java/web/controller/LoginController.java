@@ -39,6 +39,11 @@ public class LoginController {
     @PostMapping("/login")
     public RestResponse<?> login(String username, String password) {
 
+        //校验
+        if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+            return new RestResponse<>(Constants.FAILURE, "用户名或密码不存在", "用户名或密码不存在");
+        }
+
         try {
             User user = this.userDao.getUserByUsername(username);
             if (null == user) {

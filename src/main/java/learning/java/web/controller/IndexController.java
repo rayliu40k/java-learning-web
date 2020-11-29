@@ -18,6 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 
     /**
+     * modifyPassword
+     */
+    @RequestMapping("/modifyPassword")
+    public String modifyPassword(String name) {
+        System.out.println(name);
+        return "modifyPassword";
+    }
+    
+    /**
      * txt
      */
     @RequestMapping("/txt")
